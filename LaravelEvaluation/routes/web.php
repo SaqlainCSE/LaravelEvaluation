@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Products Route.....................
+Route::get('/list', [ProductController::class, 'product_list']);
+Route::post('/create', [ProductController::class, 'product_create']);
+Route::get('/delete/{id}', [ProductController::class, 'product_delete']);
