@@ -14,4 +14,15 @@ class SubCategory extends Model
         'title',
         'description',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
+
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    public function product_index()
+    {
+        $products = Product::paginate(10);
+        $categories = Category::all();
+        $subCategories = SubCategory::all();
+
+        return view('home', [
+            'categories' => $categories,
+            'subCategories' => $subCategories,
+            'products' => $products
+        ]);
+    }
 
     public function product_list(Request $request)
     {
@@ -36,7 +48,7 @@ class ProductController extends Controller
             $price = Product::where('price','<=',$request->max_price)->paginate(10);
         }
 
-        return view('products_list', compact('title','sub_category','category','price'));
+        return view('admin.product.index', compact('title','sub_category','category','price'));
     }
 
     public function product_create(Request $request)
